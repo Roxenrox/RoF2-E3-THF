@@ -1,32 +1,85 @@
 #launch eq without wineq
-#you can use multiple eq directory AND multiple eqclient.ini, though bugs exist with the eqclient.  see mq2autologin.ini
-tasklist /nh /fi "WINDOWTITLE eq Creamo" 		| find /i "eqgame.exe" > nul ||(start "Creamo" 			/d "D:\Everquest_RoF2" "D:\Everquest_RoF2\eqgame.exe" patchme /Login:account2)  && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Bosom" 		| find /i "eqgame.exe" > nul ||(start "Bosom" 			/d "D:\Everquest_RoF2" "D:\Everquest_RoF2\eqgame.exe" patchme /Login:account42) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Lush" 			| find /i "eqgame.exe" > nul ||(start "Lush" 			/d "D:\Everquest_RoF2" "D:\Everquest_RoF2\eqgame.exe" patchme /Login:account56) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Skinf" 		| find /i "eqgame.exe" > nul ||(start "Skinf" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account3) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Barrymanilow"  | find /i "eqgame.exe" > nul ||(start "Barrymanilow" 	/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account11) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Stefani" 		| find /i "eqgame.exe" > nul ||(start "Stefani" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account23) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Orbison" 		| find /i "eqgame.exe" > nul ||(start "Orbison" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account58) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Lane" 			| find /i "eqgame.exe" > nul ||(start "Lane" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account14) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Redhotchili"  	| find /i "eqgame.exe" > nul ||(start "Redhotchili" 	/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account36) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Bonham" 		| find /i "eqgame.exe" > nul ||(start "Bonham" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account34) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Soundgarden" 	| find /i "eqgame.exe" > nul ||(start "Soundgarden" 	/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account57) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Lawndart" 		| find /i "eqgame.exe" > nul ||(start "Lawndart" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account12) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Nramember" 	| find /i "eqgame.exe" > nul ||(start "Nramember" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account22) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Lube" 			| find /i "eqgame.exe" > nul ||(start "Lube" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account17) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Balron" 		| find /i "eqgame.exe" > nul ||(start "Balron" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account13) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Muddy" 		| find /i "eqgame.exe" > nul ||(start "Muddy" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account10) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Kalortpor" 	| find /i "eqgame.exe" > nul ||(start "Kalortpor" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account32) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Pontoon" 		| find /i "eqgame.exe" > nul ||(start "Pontoon" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account30) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Clasper" 		| find /i "eqgame.exe" > nul ||(start "Clasper" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account6) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Drzoidberg" 	| find /i "eqgame.exe" > nul ||(start "Drzoidberg" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account8) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Newskin" 		| find /i "eqgame.exe" > nul ||(start "Newskin" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account18) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Deodorant" 	| find /i "eqgame.exe" > nul ||(start "Deodorant" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account19) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Mammary" 		| find /i "eqgame.exe" > nul ||(start "Mammary" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account41) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Ointment" 		| find /i "eqgame.exe" > nul ||(start "Ointment" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account51) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Bushmills" 	| find /i "eqgame.exe" > nul ||(start "Bushmills" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account52) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Jamesons" 		| find /i "eqgame.exe" > nul ||(start "Jamesons" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account53) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Cremora" 		| find /i "eqgame.exe" > nul ||(start "Cremora" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account1) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Craic" 		| find /i "eqgame.exe" > nul ||(start "Craic" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account50) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Caryelwes" 	| find /i "eqgame.exe" > nul ||(start "Caryelwes" 		/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account21) && (timeout /t 8)
-tasklist /nh /fi "WINDOWTITLE eq Tuica" 		| find /i "eqgame.exe" > nul ||(start "Tuica" 			/d "D:\Everquest_RoF2_Bot" "D:\Everquest_RoF2_Bot\eqgame.exe" patchme /Login:account49) && (timeout /t 8)
+#Make a folder and place a shortcut for each character using patchme /Login:accountname after the target directory, and name the shortcut for the character.
+
+@ECHO OFF
+C:
+CHOICE /C YN /N /T 5 /D Y /M "Do you wish to launch the MQ2 and EQBCS?"
+IF ERRORLEVEL 2 GOTO G1
+@ECHO Launching MQ2
+CD \Gaming\E3_RoF2
+START C:\Gaming\E3_RoF2\MacroQuest2.exe
+PING localhost -n 2 -w 1000 >> NULL
+@ECHO Launching EQBCS
+CD \Gaming\E3_RoF2
+START /min C:\Gaming\E3_RoF2\eqbcs2.exe 
+PING localhost -n 5 -w 1000 >> NULL
+
+
+:G1
+CD C:\Bots\
+CHOICE /C YN /N /T 5 /D Y /M "Do you wish to launch Group 1?"
+IF ERRORLEVEL 2 GOTO G2
+@ECHO Launching Muergan
+Start "C:\bots\Muergan.ink" "Muergan"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Irontail
+Start "C:\bots\Irontail.ink" "Irontail"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Pigs
+Start "C:\bots\Pigs.ink" "Pigs"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Splats
+Start "C:\bots\Splats.ink" "Splats"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Pooks
+Start "C:\bots\Pooks.ink" "Pooks"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Abagaile
+Start "C:\bots\Abagaile.ink" "Abagaile"
+PING localhost -n 10 -w 1000 >> NULL
+
+:G2
+CD C:\Bots\
+CHOICE /C YN /N /T 5 /D Y /M "Do you wish to launch Group 2?"
+IF ERRORLEVEL 2 GOTO G3
+@ECHO Launching Swiftwynd
+Start "C:\bots\Swiftwynd.ink" "Swiftwynd"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Alphie
+Start "C:\bots\Alphie.ink" "Alphie"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Majuna
+Start "C:\bots\Majuna.ink" "Majuna"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Fishytooth
+Start "C:\bots\Fishytooth.ink" "Fishytooth"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Anjeni
+Start "C:\bots\Anjeni.ink" "Anjeni"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Kline
+Start "C:\bots\Kline.ink" "Kline"
+PING localhost -n 10 -w 1000 >> NULL
+
+:G2
+CD C:\Bots\
+CHOICE /C YN /N /T 5 /D Y /M "Do you wish to launch Group 3?"
+IF ERRORLEVEL 2 GOTO G4
+@ECHO Launching Meatsac
+Start "C:\bots\Meatsac.ink" "Meatsac"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Leezardman
+Start "C:\bots\Leezardman.ink" "Leezardman"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Daisey
+Start "C:\bots\Daisey.ink" "Daisey"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Cultu
+Start "C:\bots\Cultu.ink" "Cultu"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Auroras
+Start "C:\bots\Auroras.ink" "Auroras"
+PING localhost -n 10 -w 1000 >> NULL
+@ECHO Launching Rory
+Start "C:\bots\Rory.ink" "Rory"
+PING localhost -n 10 -w 1000 >> NULL
