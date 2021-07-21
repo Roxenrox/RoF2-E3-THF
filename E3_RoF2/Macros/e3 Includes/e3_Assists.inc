@@ -7,6 +7,7 @@
 #event Assist "<#*#> Assist #1# on #2#"
 #event Assist "#1# tell your party, 'Assist on #2#'"
 #event Assist "#1# tells the group, 'Assist on #2#'"
+#event Assist "[#1#(msg)] Assist on #2#"
 SUB event_Assist(line, ChatSender, int MobID)
 /if (${Debug} || ${Debug_Assists}) /echo |- event_Assist ==>
   /if (!${checkEventArgs[${ChatSender},${line},UZR,${MobID}]}) /return
