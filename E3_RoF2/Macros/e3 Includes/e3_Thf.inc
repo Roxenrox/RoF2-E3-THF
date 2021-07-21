@@ -19,7 +19,7 @@ Sub Event_SuneBuffs
 
 /if (!${Me.Moving} && !${Me.Combat})  {
 	/if (${FindItem[Sune's Vambraces of Eternal Life (Tier 10)].ID}) {
-		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]}  {
+		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]})  {
 			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2 
 			/bc [+g+]Summoning Sune to Buff !
 		}
@@ -31,12 +31,12 @@ Sub Event_SuneBuffs
 /Return
 
 
-Sub Event_SuneTargetBuff(line, ChatSender, eventParams)
+Sub Event_SuneTargetBuff(line, ChatSender, int SuneTarget)
 
 /varset SuneTarget ${c_eventArgData}
 /if (!${Me.Moving}  && !${Me.Combat})  {
 	/if (${FindItem[Sune's Vambraces of Eternal Life (Tier 10)].ID}) {
-		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]}  {
+		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]})  {
 			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2 
 			/bc [+g+]Summoning Sune to Buff !
 		}
