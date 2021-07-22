@@ -14,6 +14,9 @@ Sub defineprovokeDisc
   } else /if (${Me.CombatAbilityReady[Enraged Scowl Rk. I]}) {
     /varset provokeDisc Enraged Scowl Rk. I
 	/varset MinBellowEndurance 340
+  } else /if (${Me.CombatAbilityReady[Bazu Bellow]}) {
+    /varset provokeDisc Bazu Bellow
+	/varset MinBellowEndurance 350
   } else /if (${Me.CombatAbilityReady[Ancient: Chaos Cry]}) {
     /varset provokeDisc Ancient: Chaos Cry
 	/varset MinBellowEndurance 300
