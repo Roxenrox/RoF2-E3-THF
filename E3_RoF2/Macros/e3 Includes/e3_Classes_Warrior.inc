@@ -15,7 +15,7 @@ Sub defineprovokeDisc
     /varset provokeDisc Enraged Scowl Rk. I
 	/varset MinBellowEndurance 340
   } else /if (${Me.CombatAbilityReady[Ancient: Chaos Cry]}) {
-    /varset provokeDisc Superior Ancient: Chaos Cry
+    /varset provokeDisc Ancient: Chaos Cry
 	/varset MinBellowEndurance 300
   } else /if (${Me.CombatAbilityReady[Bellow of the Mastruq]}) {
     /varset provokeDisc Bellow of the Mastruq
