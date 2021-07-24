@@ -297,7 +297,7 @@ Sub BRD_Background_Events
 
 /if (${returnTwist} && !${TwistingStopped} && !${Bool[${Me.Casting}]} && !${Twist.Twisting} && !${resumeTwistDelay}) /call unpauseTwist
   
-/if (${autoSelo} && ${Defined[selosong]} && ${selooutdoors} && !${Me.Buff[${selosong}].ID}) /call AutoSelo
+|/if (${autoSelo} && ${Defined[selosong]} && ${selooutdoors} && !${Me.Buff[${selosong}].ID}) /call AutoSelo
 		
 	
 | Check melody
