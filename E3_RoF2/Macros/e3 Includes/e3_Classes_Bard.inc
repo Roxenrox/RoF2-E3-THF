@@ -244,7 +244,7 @@ sub check_bard_mez
 Sub AutoSelo
 
 /if (${Twist.Twisting}) /call pauseTwist
-/call e3_Cast ${Me.ID} "${selosong}" "1"
+/call e3_Cast ${Me.ID} "selosong2D" "1"
 /if (${Select[${castReturn},OUTDOORS]}) { 
 	/varset selooutdoors FALSE
 	/call unpauseTwist
@@ -273,6 +273,8 @@ Sub BRD_Setup
   /declare songSet string outer
   /declare resumeTwistDelay timer outer
   /declare TwistingStopped bool outer FALSE
+  
+  /if (${Defined[selosong]})  /call BuildSpellArray "selosong" "selosong2D"
 
   /if (${Defined[mezArray]}) {
     /call BuildSpellArray "mezArray"	"mezArray2D"
