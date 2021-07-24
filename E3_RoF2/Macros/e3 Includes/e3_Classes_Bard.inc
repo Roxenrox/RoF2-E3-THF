@@ -232,11 +232,30 @@ sub check_bard_mez
   }
   /if (${Debug}) /echo <== check_Mez -|
 /return
+
+
+
+
+Sub AutoSelo
+
+/if (${Twist.Twisting}) /call pauseTwist
+/call e3_Cast ${Me.ID} "${selosong}" "1"
+/if (${Select[${castReturn},OUTDOORS]}) { 
+	/varset selooutdoors FALSE
+	/call unpauseTwist
+	/return
+	}
+/delay 30
+/unpausetwist
+
+/Return
+	
+
+
 |--------------------------------------------------------------|
 Sub BRD_Setup
 /if (${Debug}) /echo |- BRD_Setup ==>
-  /declare selooutdoors bool outer TRUE
-  /if (!${Defined[queueSelo]}) /declare queueSelo bool global
+  /declare selooutdoors TRUE bool outer 
   
   /call iniToVarV "${Character_Ini},Bard,Auto-Melody" autoMelody string outer
   /call InitoVarV "${Character_Ini},Bard,Auto-Selo (On/Off)" autoSelo bool outer
@@ -268,58 +287,53 @@ Sub BRD_Setup
 /return
 |--------------------------------------------------------------|
 Sub BRD_Background_Events
-  /if (${returnTwist} && !${TwistingStopped} && !${Bool[${Me.Casting}]} && !${Twist.Twisting} && !${resumeTwistDelay}) /call unpauseTwist
+
+/if (${returnTwist} && !${TwistingStopped} && !${Bool[${Me.Casting}]} && !${Twist.Twisting} && !${resumeTwistDelay}) /call unpauseTwist
   
-  /if (${autoSelo} && ${Defined[selosong]} && ${selooutdoors} && !${Me.Buff[${selosong}].ID}) {
-		/varset queueSelo TRUE
-		/if (${Twist.Twisting}) {
-			/call pauseTwist
-		}
-		/call e3_Cast ${Me.ID} "${selosong}"
-		/if (${Select[${castReturn},OUTDOORS]}) { 
-			/varset selooutdoors FALSE
-			/varset queueSelo FALSE
-			}
-		/delay 30
-		/stopcast
-	}
+/if (${autoSelo} && ${Defined[selosong]} && ${selooutdoors} && !${Me.Buff[${selosong}].ID}) /call AutoSelo
+		
 	
-	/if (${queueSelo} && ${Me.Buff[${selosong}].ID}) {
-		/varset queueSelo FALSE
-		/if (!${playingMelody} && !${Twist.Twisting}) {
-			/doevents startMelody
-		}
-	}
-	/doevents saveMelody
-	/doevents startMelody
-	
-	| Check melody
-	/if (${playingMelody} && !${TwistingStopped} && !${Twist.Twisting} && !${Bool[${Me.Casting}]} && !${queueSelo}) /call unpauseTwist
-	
-  /doevents charmTarget
-  /doevents toggleMez
-  /doevents charmOn
-  /doevents charmOff
-  /doevents TwistStop
+| Check melody
+/if (${playingMelody} && !${TwistingStopped} && !${Twist.Twisting} && !${Bool[${Me.Casting}]}) /call unpauseTwist
+
+
+/doevents saveMelody
+/doevents startMelody
+/doevents charmTarget
+/doevents toggleMez
+/doevents charmOn
+/doevents charmOff
+/doevents TwistStop
+
+
 /return
 |--------------------------------------------------------------|
 SUB BRD_MacroSettings
-	| Adv Settings
-	/call WriteToIni "${advSettings_Ini},BRD Functions,BRD Function#1" "check_Burns" 1
-	/call WriteToIni "${advSettings_Ini},BRD Functions,BRD Function#2" "check_Buffs" 1
+
+| Adv Settings
+/call WriteToIni "${advSettings_Ini},BRD Functions,BRD Function#1" "check_Burns" 1
+/call WriteToIni "${advSettings_Ini},BRD Functions,BRD Function#2" "check_Buffs" 1
+
+
 /RETURN
 |--------------------------------------------------------------|
 SUB BRD_CharacterSettings
-  /call WriteToIni "${Character_Ini},Bard,Auto-Melody"
-  /call WriteToIni "${Character_Ini},${Me.Class},Auto-Selo (On/Off)" On
-  /call WriteToIni "${Character_Ini},${Me.Class},Selo Song/Item" 
-  /call WriteToIni "${Character_Ini},Bard,AutoMez (On/Off)" Off
-  /call WriteToIni "${Character_Ini},Bard,Mez"
-  /call WriteToIni "${Character_Ini},Bard,Charm"
+
+/call WriteToIni "${Character_Ini},Bard,Auto-Melody"
+/call WriteToIni "${Character_Ini},${Me.Class},Auto-Selo (On/Off)" On
+/call WriteToIni "${Character_Ini},${Me.Class},Selo Song/Item" 
+/call WriteToIni "${Character_Ini},Bard,AutoMez (On/Off)" Off
+/call WriteToIni "${Character_Ini},Bard,Mez"
+/call WriteToIni "${Character_Ini},Bard,Charm"
+  
 /RETURN
+
 |--------------------------------------------------------------|
+
 Sub BRD_Aliases
-	/squelch /alias /SaveMelody /echo Save Melody
-	/squelch /alias /PlayMelody /bc Melody
-	/squelch /alias /StopMelody /bc MelodyStop
+
+/squelch /alias /SaveMelody /echo Save Melody
+/squelch /alias /PlayMelody /bc Melody
+/squelch /alias /StopMelody /bc MelodyStop
+	
 /return
