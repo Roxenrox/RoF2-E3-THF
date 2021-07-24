@@ -72,9 +72,8 @@ sub Event_wordHeal(line, ChatSender)
   /delay 5s !${Me.Casting.ID}
   /call check_Ready "wordHeal2D" 1
   /if (${c_Ready}) {
-    /if (${check_Mana["wordHeal2D",1]}) {
-      /bc [+g+] Casting ${wordHeal2D[1,${iCastName}]}
-      /call e3_Cast ${Me.ID} "wordHeal2D" 1
+    /bc [+g+] Casting ${wordHeal2D[1,${iCastName}]}
+    /call e3_Cast ${Me.ID} "wordHeal2D" 1
     }
   }
 /return
@@ -356,22 +355,24 @@ Sub definedwordHealSpell
   /declare i int local
   
   
-  /if (${Me.Book[Word of Strategy]}) {
-    /varset rezSpell Word of Strategy
+  /if (${Me.Book[Word of Salvation]}) {
+    /varset wordHealSpell Word of Salvation
+  } else  /if (${Me.Book[Word of Strategy]}) {
+    /varset wordHealSpell Word of Strategy
   } else  /if (${Me.Book[Word of Vivification]}) {
-    /varset rezSpell Word of Vivification
-  } else /if (${Me.Book[Word of Replenishment]}) {
-    /varset rezSpell Word of Replenishment
+    /varset wordHealSpell Word of Vivification
+  } else /if (${Me.Book[Staar's Word of Replenishment]}) {
+    /varset wordHealSpell Staar's Word of Replenishment
   } else /if (${Me.Book[Word of Redemption]}) {
-    /varset rezSpell Word of Redemption
-  } else /if (${Me.Book[Word of Restoration]}) {
-    /varset rezSpell Word of Restoration
+    /varset wordHealSpell Word of Redemption
+  } else /if (${Me.Book[Staar's Word of Restoration]}) {
+    /varset wordHealSpell Staar's Word of Restoration
   } else /if (${Me.Book[Word of Vigor]}) {
-    /varset rezSpell Word of Vigor
-  } else /if (${Me.Book[Word of Healing]}) {
-    /varset rezSpell Word of Healing
+    /varset wordHealSpell Word of Vigor
+  } else /if (${Me.Book[Staar's Word of Healing]}) {
+    /varset wordHealSpell Staar's Word of Healing
   } else /if (${Me.Book[Word of Health]}) {
-    /varset rezSpell Word of Health
+    /varset wordHealSpell Word of Health
   }
   /if (${Bool[${wordHealSpell}]}) {
     /if (${Defined[wordHealArray]}) /deletevar wordHealArray
