@@ -260,7 +260,7 @@ Sub AutoSelo
 |--------------------------------------------------------------|
 Sub BRD_Setup
 /if (${Debug}) /echo |- BRD_Setup ==>
-  /declare selooutdoors TRUE bool outer 
+  /declare selooutdoors bool outer TRUE
   
   /call iniToVarV "${Character_Ini},Bard,Auto-Melody" autoMelody string outer
   /call InitoVarV "${Character_Ini},Bard,Auto-Selo (On/Off)" autoSelo bool outer
