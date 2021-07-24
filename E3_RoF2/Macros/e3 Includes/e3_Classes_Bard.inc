@@ -244,7 +244,7 @@ sub check_bard_mez
 Sub AutoSelo
 
 /if (${Twist.Twisting}) /call pauseTwist
-/call e3_Cast ${Me.ID} "selosong2D" "1"
+/call e3_Cast ${Me.ID} "selosong2D" 1
 /if (${Select[${castReturn},OUTDOORS]}) { 
 	/varset selooutdoors FALSE
 	/call unpauseTwist
@@ -264,7 +264,7 @@ Sub BRD_Setup
   
   /call iniToVarV "${Character_Ini},Bard,Auto-Melody" autoMelody string outer
   /call InitoVarV "${Character_Ini},Bard,Auto-Selo (On/Off)" autoSelo bool outer
-  /call InitoVarV "${Character_Ini},${Me.Class},Selo Song/Item" selosong string outer
+  /call IniToArrayV "${Character_Ini},${Me.Class},Selo Song/Item" selosong string outer
   /call iniToVarV "${Character_Ini},Bard,AutoMez (On/Off)" autoMez bool outer
   /call IniToArrayV "${Character_Ini},Bard,Mez#"	  mezArray
   /call IniToArrayV "${Character_Ini},Bard,Charm#"	charmArray
