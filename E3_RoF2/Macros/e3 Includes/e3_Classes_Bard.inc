@@ -251,7 +251,7 @@ Sub AutoSelo
 	/return
 	}
 /delay 30
-/unpausetwist
+/call unpauseTwist
 
 /Return
 	
