@@ -805,6 +805,7 @@ SUB FindItemSub(ItemToFind,reportTotal,reportDelay)
 |- Use, /bc FindMissingItem 'Name', /echo FindMissingItem 'Name'	-|
 |------------------------------------------------------------------|
 #EVENT FindMissingItem "<#1#> Find Missing Item #2#"
+#EVENT FindMissingItem "[#1#(msg)] Find Missing Item #2#"
 SUB EVENT_FindMissingItem(line, ChatSender, ItemToFind)
   /if (!${checkEventArgs[${ChatSender},${line},U,${ItemToFind}]}) /return
   |parse item link
