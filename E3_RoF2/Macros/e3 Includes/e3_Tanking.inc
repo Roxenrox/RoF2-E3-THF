@@ -258,7 +258,8 @@ SUB OffTankTarget
 /varset AssistStickDistance 10
 /varset OffTankSkipAssist 1
 /if (${Me.Pet.ID}) /pet attack ${AssistTarget}
-/call StickToAssistTarget
+/squelch /face fast id ${OTtarget}
+/squelch /stick hold front ${AssistStickDistance} uw
 /attack on
 
 
