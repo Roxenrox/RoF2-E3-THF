@@ -1719,7 +1719,9 @@ Sub Event_ZenurixSafe
 Sub defineCreepDoomCure
   /declare CreepDoomCureitem string local
   /declare i int local
-  /if (${FindItem[Shissar Empire Badge of Honor (Tier 1)].ID}) {
+  /if (${FindItem[Galadriel's Gift (Tier 10)].ID}) {
+    /varset CreepDoomCureitem Galadriel's Gift (Tier 10)
+  }	else  /if (${FindItem[Shissar Empire Badge of Honor (Tier 1)].ID}) {
     /varset CreepDoomCureitem Shissar Empire Badge of Honor (Tier 1)
   } else /if (${Me.Book[Remove Greater Curse]}) {
     /varset CreepDoomCureitem Remove Greater Curse
