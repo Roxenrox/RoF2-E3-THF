@@ -55,10 +55,22 @@ SUB event_Assist(line, ChatSender, int MobID)
         /varset AllowControl TRUE
         |/docommand ${ChatToggle} Attacking - ${AssistTarget} - ${Spawn[${AssistTarget}].CleanName}
         /if (${Target.ID} != ${AssistTarget} && (!${Bool[${Me.Casting}]} || ${Me.Class.ShortName.Equal[BRD]}) && (${AssistType.Equal[melee]} || ${AssistType.Equal[ranged]})) /call TrueTarget ${AssistTarget}
+		/if (${Zone.ShortName.Equal[solteris]})  {
+			/if (!${IsTank} && ${SolterisDispellToon})  {
+				/call SolterisDispellCheck
+			} else /if (!${IsTank} && ${Select[${Me.Class.ShortName},MNK,BER,ROG,RNG,BST,BRD,PAL,SHD,WAR]})  {
+				/call SolterisAssistCheck
+			}
+		}
         /if (${Me.Pet.ID}) {
-          /if (${Debug} || ${Debug_Assists}) /echo Pet Check: Sending pet in
-          /pet attack ${AssistTarget}
+			/if (${Zone.ShortName.Equal[solteris]} && ${Target.Buff[Woven Fire].ID})  {
+				/goto :PetSkip
+			} else {
+				/if (${Debug} || ${Debug_Assists}) /echo Pet Check: Sending pet in
+				/pet attack ${AssistTarget}
+			}
         }
+		:PetSkip
         /if (${AssistType.Equal[melee]}) {
           /if (${Debug} || ${Debug_Assists}) /echo melee on
           /if (${Int[${AssistDistanceSetting}]}) {

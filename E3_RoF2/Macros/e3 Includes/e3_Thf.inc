@@ -2342,9 +2342,65 @@ Sub GiantControl
 /Return
 
 
+|-----------------Solteris----------------------------------|
+
+Sub SolterisDS_Dispell
+
+/call defineSolerisDispell
+:DispellLoop
+/call check_Ready "SolerisDispellArray2D" 1
+/if (${c_Ready})  {
+	/call e3_cast ${AssistTarget} "SolerisDispellArray2D" 1
+	/bc Dispelling ${Spawn[id ${AssistTarget}].CleanName}
+	/delay 5
+}
+/if (${Target.Buff[Woven Fire].ID} || ${Target.Buff[Fiery Potential].ID} || ${Target.Buff[Infusion of the Inferno].ID})  /goto :DispellLoop
+
+/return
+
+
+Sub defineSolerisDispell
+
+/declare SolerisDispell string local
+/declare i int local
+/if (${FindItem[Christine's Engagement Ring (Tier 9)].ID}) {
+	/varset SolerisDispell Christine's Engagement Ring (Tier 9)
+} else /if (${Me.Book[Flames of Annulment]}) {
+    /varset SolerisDispell Flames of Annulment
+} 
+/if (${Bool[${SolerisDispell}]}) {
+	/if (${Defined[SolerisDispellArray]}) /deletevar SolerisDispellArray
+    /declare SolerisDispellArray[1] string outer ${SolerisDispell}
+    /if (${SolerisDispellArray.Size}) {
+		/call BuildSpellArray "SolerisDispellArray" "SolerisDispellArray2D"
+        /for i 1 to ${SolerisDispellArray2D.Size[1]}
+        /varset SolerisDispellArray2D[${i},${iCastInvis}] 1
+        /next i
+    }
+} else {
+    /return
+}
+/RETURN
 
 
 
+Sub SolterisAssistCheck
+
+ /if (${Target.Buff[Woven Fire].ID})  {
+	:CombatHold
+	/delay 30
+	/if (${Target.Buff[Woven Fire].ID})  /goto :CombatHold
+}
+
+/Return
+
+
+
+Sub SolterisDispellCheck
+
+/if (${Target.Buff[Woven Fire].ID} || ${Target.Buff[Fiery Potential].ID} || ${Target.Buff[Infusion of the Inferno].ID})  /call SolterisDS_Dispell
+
+/Return
 
 
 
@@ -2480,6 +2536,7 @@ Sub Thf_Setup
 /if (${Ini[${genSettings_Ini},General,CycleNearestTarget-Hotbutton].Length})  /call IniToVarV "${genSettings_Ini},General,CycleNearestTarget-Hotbutton" CycleTarget string outer
 /if (${Ini[${Character_Ini},Misc,Self Shrink (On/Off)].Length})  /call IniToVarV "${Character_Ini},Misc,Self Shrink (On/Off)" SelfShrink bool outer
 /if (${Ini[${Character_Ini},Misc,Custom Commands (On/Off)].Length})  /call IniToVarV "${Character_Ini},Misc,Custom Commands (On/Off)" CustomCommands bool outer
+/if (${Ini[${Character_Ini},Solteris,Dispell (On/Off)].Length})  /call IniToVarV "${Character_Ini},Solteris,Dispell (On/Off)" SolterisDispellToon bool outer
 	
 /if (${Debug}) /echo <== Thf_Setup -|
 /return
@@ -2545,6 +2602,9 @@ Sub Thf_Background_Events
 /doevents SuneTargetBuff
 /doevents SuneBuffRequest
 
+
+|---Utility Checks---|
+
 /if (!${Me.Moving} && ${SelfShrink} && ${NoShrinkItem} && ${Me.Height} > 2.05)  /call Auto_Shrink
 
 /if (${AutoConversion} && ${NoConversion} == 0 && !${Me.Moving} && !${Assisting} && ${Me.PctMana} <= ${StartConversion} && ${Me.PctHPs} > ${ConversionMinHP})  {
@@ -2554,11 +2614,33 @@ Sub Thf_Background_Events
 }
 
 
-
 /if (${GatherManaCheck} && ${Me.PctMana} < ${SmallGatherPCT} || ${Me.PctMana} < ${LargeGatherPCT})  /call check_GatherMana
 
 /if (${Me.AbilityReady[Forage]} && ${AutoForageCheck} == 1)  /call DoForage
 
+
+
+|---Solteris Checks---|
+
+/if (${Assisting} && ${Zone.ShortName.Equal[solteris]} && ${SolterisDispellToon})  {  
+	/if (${Target.Buff[Woven Fire].ID} || ${Target.Buff[Fiery Potential].ID} || ${Target.Buff[Infusion of the Inferno].ID})  { 
+		/call SolterisDS_Dispell
+	}
+}
+
+/if (${Zone.ShortName.Equal[solteris]} && ${Target.Buff[Woven Fire].ID}  && ${Assisting} && ${AssistType.Equal[melee]} && !${SolterisDispellToon}) {
+	:CombatDSHold
+	/attack off
+	/squelch /pet back off
+	/if (${Target.Buff[Woven Fire].ID})  {
+		/goto :CombatDSHold
+	} else {
+		/attack on
+		/pet attack ${AssistTarget}
+	}
+}
+	
+/if (${Me.Pet.ID} && ${Zone.ShortName.Equal[solteris]} && ${Target.Buff[Woven Fire].ID}  && ${Assisting})  /squelch /pet back off
 
 
 /Return 
@@ -2598,6 +2680,7 @@ SUB Thf_CharacterSettings
 
 /call WriteToIni "${Character_Ini},Misc,Self Shrink (On/Off)" On
 /call WriteToIni "${Character_Ini},Misc,Custom Commands (On/Off)" Off
+/call WriteToIni "${Character_Ini},Solteris,Dispell (On/Off)" Off
 
 
 /if (${Select[${Me.Class.ShortName},CLR,PAL,RNG,SHD,ENC,MAG,NEC,BST,WIZ,DRU,SHM]})  {
