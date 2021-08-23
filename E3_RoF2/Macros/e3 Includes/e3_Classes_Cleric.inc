@@ -115,6 +115,7 @@ SUB EVENT_AE_Rez(line, ChatSender)
 /if (${Debug} || ${Debug_Basics}) /echo |- EVENT_AE_Rez ==>
   /call defineRezSpell
   /call BuildCorpseList
+  /bc Consent ${Me.CleanName}
 	/if (!${CorpseListSize}) {
 		/echo I couldn't find any corpses to resurrect...
 	} else {
