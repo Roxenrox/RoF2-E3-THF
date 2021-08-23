@@ -816,6 +816,8 @@ SUB EVENT_attendance(line, ChatSender)
 
 Sub Event_NewTHFChar
 
+/if (${Me.Level} > 1 || !${Zone.ShortName.Equal[nektulosa]}) /return
+
 /echo New Character Setup is Starting ***Please do NOT Interfere with the Process*** !!!
 /popup New Character Setup is Starting ***Please do NOT Interfere with the Process*** !!!
 
