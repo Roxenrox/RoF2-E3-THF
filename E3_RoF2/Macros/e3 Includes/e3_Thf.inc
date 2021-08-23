@@ -433,6 +433,8 @@ Sub defineSmallGather
   
 /if (${FindItem[=Tears of Frozen Mana].ID}) {
     /varset SmallGatheritem Tears of Frozen Mana
+} else /if (${FindItem[=Avilaine's Staff of Chaos (Tier 8)].ID}) {
+    /varset SmallGatheritem Avilaine's Staff of Chaos (Tier 8)
 } else /if (${FindItem[=Tears of Frozen Spirits].ID}) {
     /varset SmallGatheritem Tears of Frozen Spirits
 } else {
@@ -460,6 +462,10 @@ Sub defineLargeGather
   /declare i int local
   /if (${FindItem[=Fire Crystal Wristguard (Tier 10)].ID}) {
     /varset LargeGatheritem Fire Crystal Wristguard (Tier 10)
+  } else /if (${FindItem[=Shadowed Shield of Luclin (Tier 9)].ID}) {
+    /varset LargeGatheritem Shadowed Shield of Luclin (Tier 9)
+  } else /if (${FindItem[=Fiery Slippers of Harmony (Tier 7)].ID}) {
+    /varset LargeGatheritem Fiery Slippers of Harmony (Tier 7)
   } else /if (${FindItem[=Entropic Orb of Lithluran (Tier 8)].ID}) {
     /varset LargeGatheritem Entropic Orb of Lithluran (Tier 8)
   } else /if (${FindItem[=Immaculate Glowing Black Stone (Tier 8)].ID}) {
