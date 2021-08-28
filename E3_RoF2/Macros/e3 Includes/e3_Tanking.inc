@@ -252,12 +252,12 @@ SUB OffTankTarget
 /if (${NetAdvPath.Following}) /squelch /netfollow off
 /varset AssistTarget ${OTtarget}
 /varset AntithesisTarget ${OTtarget}
-/target ${AssistTarget}
+/target ${OTtarget}
 /varset Assisting TRUE
 /varset AllowControl TRUE
 /varset AssistStickDistance 10
 /varset OffTankSkipAssist 1
-/if (${Me.Pet.ID}) /pet attack ${AssistTarget}
+/if (${Me.Pet.ID}) /pet attack ${OTtarget}
 /squelch /face fast id ${OTtarget}
 /squelch /stick hold front ${AssistStickDistance} uw
 /attack on
@@ -327,6 +327,12 @@ SUB AgroAbilities
 					/delay 3 !${Me.CombatAbilityReady[${AgroAbilities2D[${i},${iCastName}]}]}
 					/varset AgroAbilityTimer 3s
 				}
+			}
+		|-Items-|
+		} else /if (${AgroAbilities2D[${i},${iCastType}].Equal[Item]}) {
+			/if (!${FindItem[${AgroAbilities2D[${i},${iCastName}]}].TimerReady})  {
+				/casting "${AgroAbilities2D[${i},${iCastName}]}" item
+				/varset AgroAbilityTimer 3s
 			}
 		|-Spells
 		} else {
