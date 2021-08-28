@@ -2615,7 +2615,7 @@ Sub Thf_Background_Events
 
 |---Utility Checks---|
 
-/if (!${Me.Moving} && ${SelfShrink} && ${NoShrinkItem} && ${Me.Height} > 2.05)  /call Auto_Shrink
+/if (!${Me.Moving} &&  !${Debuff.Silenced} && ${SelfShrink} && ${NoShrinkItem} && ${Me.Height} > 2.05)  /call Auto_Shrink
 
 /if (${AutoConversion} && ${NoConversion} == 0 && !${Me.Moving} && !${Assisting} && ${Me.PctMana} <= ${StartConversion} && ${Me.PctHPs} > ${ConversionMinHP})  {
 	/call check_Conversion
