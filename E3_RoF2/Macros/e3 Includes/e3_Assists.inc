@@ -177,7 +177,6 @@ SUB StickToAssistTarget
 			/squelch /stick hold moveback behind ${AssistStickDistance} uw
     } else /if (${AssistStickPoint.Equal[front]}) {
       /if (${Debug} || ${Debug_Assists}) /echo Attempting to stick front [${AssistStickDistance}].
-	  :OtTankStick
       /squelch /stick hold front ${AssistStickDistance} uw
       /delay 20 ${Stick.Stopped}
 		} else /if (${AssistStickPoint.Equal[behindonce]}) {
@@ -231,6 +230,7 @@ SUB check_AssistStatus
           /squelch /face fast
           /if ((${Math.Abs[${Me.Heading.Degrees}-${Target.Heading.Degrees}]} > 85 && !${Stick.Behind}) || ${AssistStickPoint.Equal[front]}) {
             /if (${Debug} || ${Debug_Assists}) /echo I am not behind the target. Stopping attack.
+			/if (${OffTankSkipAssist} == 1) /return
             /attack off
             /return
           }
