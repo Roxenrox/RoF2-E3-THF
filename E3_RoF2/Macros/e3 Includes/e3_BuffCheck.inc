@@ -63,7 +63,7 @@ SUB buffBots(ArrayName)
   }
   
   |-----------CombatCast Check-------------------|
- /if (${Select[${ArrayName},SelfBuffs2D,BotBuffs2D]} && ${Assisting} && !${${ArrayName}[${s},${iCombatCast}]}) /goto :skipBuff
+ /if (${Select[${ArrayName},SelfBuffs2D,BotBuffs2D]} && ${Assisting} && !${Debuff.Silenced} && !${${ArrayName}[${s},${iCombatCast}]}) /goto :skipBuff
   |------- Self ------|
   /if (${Select[${ArrayName},SelfBuffs2D,InstantBuffs2D]}) {
 

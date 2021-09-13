@@ -5,25 +5,30 @@
 | 3- checks all netbot curing: CureAll#
 |----------------------------------------------------------------------------|
 Sub check_Cures
+
 /declare Debug_Cures bool local FALSE
-	/declare t int local
-	/declare n int local
-  /declare g int local
-  /declare numSick int local
+/declare t int local
+/declare n int local
+/declare g int local
+/declare numSick int local
+
+|--Return if silenced to prevent spam--|
+/if (${Debuff.Silenced})  /Return
+
 | 1- check Radiant Curing
-  /if (${autoRCure} && ${doRadiantCure} && ${Me.AltAbilityReady[Radiant Cure]}) {
-    /if (${Debug} || ${Debug_Cures}) /echo Checking Rcures
+/if (${autoRCure} && ${doRadiantCure} && ${Me.AltAbilityReady[Radiant Cure]}) {
+	/if (${Debug} || ${Debug_Cures}) /echo Checking Rcures
     /for t 1 to ${rCure2D.Size[1]}
-      /varset numSick 0
-      /for n 0 to ${Group}
-        /if (${SpawnCount[pc =${Group.Member[${n}]}]} && ${NetBots[${Group.Member[${n}]}].Counters}>0) {
-          /if (${Bool[${Group.Member[${n}].Distance}]} && ${Group.Member[${n}].Distance} < ${rCure2D[${t},${iMyRange}]} && ${Bool[${NetBots[${Group.Member[${n}]}].Buff.Find[${rCure2D[${t},${iCheckForID}]} ]}]}) /varcalc numSick ${numSick}+1
-        }
-      /next n
-      |if enough people have the debuff to cure
-      /if (${numSick} >= ${rCure2D[${t},${iMinSick}]}) /call cast_RadiantCure
+    /varset numSick 0
+    /for n 0 to ${Group}
+    /if (${SpawnCount[pc =${Group.Member[${n}]}]} && ${NetBots[${Group.Member[${n}]}].Counters}>0) {
+         /if (${Bool[${Group.Member[${n}].Distance}]} && ${Group.Member[${n}].Distance} < ${rCure2D[${t},${iMyRange}]} && ${Bool[${NetBots[${Group.Member[${n}]}].Buff.Find[${rCure2D[${t},${iCheckForID}]} ]}]}) /varcalc numSick ${numSick}+1
+    }
+    /next n
+    |if enough people have the debuff to cure
+    /if (${numSick} >= ${rCure2D[${t},${iMinSick}]}) /call cast_RadiantCure
     /if (!${ActionTaken})  /next t
-  }
+}
 
 | 2- checks specified Target curing: Cure#
   /if (!${ActionTaken} && ${doCures}) {
