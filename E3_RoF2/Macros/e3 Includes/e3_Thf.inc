@@ -305,8 +305,8 @@ Sub definethfgate
     /varset thfgateitem Advanced Magical Charm of Queen Adrianne (Tier 2)
   } else /if (${FindItem[=Magical Charm of Queen Adrianne (Tier 1)].ID}) {
     /varset thfgateitem Magical Charm of Queen Adrianne (Tier 1)
-  } else /if (${FindItem[=Advanced Charm of Queen Adrianne].ID}) {
-    /varset thfgateitem Advanced Charm of Queen Adrianne
+  } else /if (${FindItem[=Advanced Charm of Queen Adrianne (Tier 1)].ID}) {
+    /varset thfgateitem Advanced Charm of Queen Adrianne (Tier 1)
   } else /if (${FindItem[=Charm of Queen Adrianne].ID}) {
     /varset thfgateitem Charm of Queen Adrianne
   } else /if (${Me.Book[Circle of the Forest]}) {
@@ -2052,6 +2052,7 @@ Sub	Event_MaestroGoto
 
 Sub	Event_MaestroGoAdds
 /popup Run To Hallway !!!!
+/beep
 /if (${Select[${Me.Class.ShortName},WIZ,ENC,MAG,NEC,DRU,CLR,SHM]})  {
 	/call AssistOff	
 } else /if (${Select[${Me.Class.ShortName},MNK,BER,ROG,RNG,BST,BRD]})  {
