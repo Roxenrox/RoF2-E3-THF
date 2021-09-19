@@ -2342,6 +2342,8 @@ Sub defineSolerisDispell
 /declare i int local
 /if (${FindItem[Christine's Engagement Ring (Tier 9)].ID}) {
 	/varset SolerisDispell Christine's Engagement Ring (Tier 9)
+} else /if (${Me.Book[Blast of Annulment]}) {
+    /varset SolerisDispell Blast of Annulment	
 } else /if (${Me.Book[Flames of Annulment]}) {
     /varset SolerisDispell Flames of Annulment
 } 
