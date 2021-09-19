@@ -20,14 +20,14 @@ Sub Event_SuneBuffs
 /if (!${Me.Moving} && !${Me.Combat})  {
 	/if (${FindItem[Sune's Vambraces of Eternal Life (Tier 10)].ID}) {
 		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]})  {
-			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2 
+			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2
 			/bc [+g+]Summoning Sune to Buff !
 		}
 		/delay 2
 		/call TargetSune
 	}
 }
-	
+
 /Return
 
 
@@ -37,7 +37,7 @@ Sub Event_SuneTargetBuff(line, ChatSender, int SuneTarget)
 /if (!${Me.Moving}  && !${Me.Combat})  {
 	/if (${FindItem[Sune's Vambraces of Eternal Life (Tier 10)].ID}) {
 		/if (${Me.ItemReady[Sune's Vambraces of Eternal Life (Tier 10)]})  {
-			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2 
+			/casting "Sune's Vambraces of Eternal Life (Tier 10)|item -maxtries|2
 			/bc [+g+]Summoning Sune to Buff !
 		}
 		/delay 2
@@ -67,7 +67,7 @@ Sub TargetSune
 	/moveto id ${Spawn[NPC =The Spirit of Sune].ID}
 	/call WaitUntilNotMoving
 	/say buff
-} else { 
+} else {
 	/bc [+g+] Sune is Out of Range or Missing
 }
 /Return
@@ -89,7 +89,7 @@ SUB check_Conversion
 }
 /if (!${ActionTaken}) /next s
 
-	
+
 /if (${Debug}) /echo <== autoConversion -|
 /RETURN
 
@@ -107,7 +107,7 @@ SUB EVENT_CheckEmptyAugType(line, ChatSender, augType)
 		}
 	} else {
 		/declare outStr string local
-	
+
 		/declare i int local
 		/declare j int local
 		/for i 0 to 20
@@ -135,7 +135,7 @@ SUB EVENT_CheckEmptyAugSlot(line, ChatSender, augSlot)
 		/declare i int local
 		/declare outStr string local
 		/declare itemLinkStr string local
-		
+
 		/if (${c_eventArgData.Equal[fingers]}) {
 			/for i 1 to ${InvSlot[leftfinger].Item.Augs}
 			/if (!${InvSlot[leftfinger].Item.Item[${i}].ID}) {
@@ -272,7 +272,7 @@ Sub DoForage
 #event thfgate "you tell your party, 'thfgate'"
 #event thfgate "#1# tells the group, 'thfgate'"
 #event thfgate "#1# tells you, 'thfgate'"
-SUB EVENT_thfgate 
+SUB EVENT_thfgate
 	/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
     /call definethfgate
     :checkReady
@@ -283,7 +283,7 @@ SUB EVENT_thfgate
         /goto :checkReady
       }
      /call e3_cast ${Me.ID} "thfgateArray2D" 1
-   
+
 /return
 
 
@@ -313,7 +313,7 @@ Sub definethfgate
     /varset thfgateitem Circle of the Forest
   } else /if (${Me.Book[Forest Portal]}) {
     /varset thfgateitem Forest Portal
-  } 
+  }
   /if (${Bool[${thfgateitem}]}) {
     /if (${Defined[thfgateArray]}) /deletevar thfgateArray
     /declare thfgateArray[1] string outer ${thfgateitem}
@@ -345,7 +345,7 @@ SUB EVENT_valegate
         /goto :checkReady
       }
      /call e3_cast ${Me.ID} "ValegateArray2D" 1
-   
+
 /return
 
 
@@ -359,7 +359,7 @@ Sub defineValegate
     /varset Valegateitem Circle of the Vale
   } else /if (${Me.Book[Vale Portal]}) {
     /varset Valegateitem Vale Portal
-  } 
+  }
   /if (${Bool[${Valegateitem}]}) {
     /if (${Defined[ValegateArray]}) /deletevar ValegateArray
     /declare ValegateArray[1] string outer ${Valegateitem}
@@ -394,7 +394,7 @@ SUB EVENT_hohgate
         /goto :checkReady
       }
      /call e3_cast ${Me.ID} "hohgateArray2D" 1
-   
+
 /return
 
 
@@ -430,7 +430,7 @@ Sub defineSmallGather
 
   /declare SmallGatheritem string local
   /declare i int local
-  
+
 /if (${FindItem[=Tears of Frozen Mana].ID}) {
     /varset SmallGatheritem Tears of Frozen Mana
 } else /if (${FindItem[=Avilaine's Staff of Chaos (Tier 8)].ID}) {
@@ -450,7 +450,7 @@ Sub defineSmallGather
         /varset SmallGatherArray2D[${i},${iCastInvis}] 1
       /next i
       }
-  } 
+  }
 /RETURN
 
 
@@ -495,15 +495,15 @@ Sub defineLargeGather
         /varset LargeGatherArray2D[${i},${iCastInvis}] 1
       /next i
       }
-  } 
+  }
 /RETURN
 
 
 Sub check_GatherMana
 
-	
+
 	/if (${Me.Combat} && ${Select[${Me.Class.ShortName},BST,PAL,RNG,SHD]})  {
-		/return	
+		/return
 	} else /if (${Assisting} && ${SmallGatheritemCapable} && ${Me.PctMana} < ${SmallGatherPCT} && ${Me.PctMana} > ${LargeGatherPCT})  {
 		/call defineSmallGather
 		/call check_Ready "SmallGatherArray2D" 1
@@ -529,12 +529,12 @@ Sub check_GatherMana
 			/call e3_cast ${Me.ID} "LargeGatherArray2D" 1
 		}
 	}
-			
-/Return		
-		
 
-		
-|---------------------------Auto Shrink--------------By Muergan-------|	
+/Return
+
+
+
+|---------------------------Auto Shrink--------------By Muergan-------|
 
 SUB Auto_Shrink
 
@@ -577,18 +577,18 @@ SUB SelfShrink_Spell
 	/varset NoShrinkItem FALSE
   }
 }
-  
+
  /if (${Bool[${SelfShrinkSpell}]}) {
     /if (${Defined[SelfShrinkSpellArray]}) /deletevar SelfShrinkSpellArray
     /declare SelfShrinkSpellArray[1] string outer ${SelfShrinkSpell}
     /if (${SelfShrinkSpellArray.Size}) {
 		/call BuildSpellArray "SelfShrinkSpellArray" "SelfShrinkSpellArray2D"
 	}
-} 
+}
 
-	
-/Return		
-		
+
+/Return
+
 | -------------------------------------------------------------------------------------------------------|
 | -- Call of the Hero: Single Target, Group, All (Netbots)          Written by Muergan                  -|
 |========================================================================================================|
@@ -600,9 +600,9 @@ SUB SelfShrink_Spell
 #event cohme "#1# tells you, 'cohme'"
 #event cohgroup "#1# tells you, 'cohgroup'"
 #event cohall "#1# tells you, 'cohall'"
-		
 
-		
+
+
 Sub definecohspell
   /declare cohspell string local
   /declare i int local
@@ -614,7 +614,7 @@ Sub definecohspell
     /varset cohspell Arion, Skull of the Ancient (Tier 10)
   } else /if (${FindItem[=Orb of the Crimson Bull (Tier 2)].ID}) {
     /varset cohspell Orb of the Crimson Bull (Tier 2)
-  } 
+  }
   /if (${Bool[${cohspell}]}) {
     /if (${Defined[cohspellArray]}) /deletevar cohspellArray
     /declare cohspellArray[1] string outer ${cohspell}
@@ -627,40 +627,40 @@ Sub definecohspell
   } else {
     /bc I do not have a CoH Spell/Item available
   }
-/RETURN		
-		
-		
-		
-		
-		
-|-- CoH Me Event --|		
-		
-		
+/RETURN
+
+
+
+
+
+|-- CoH Me Event --|
+
+
 sub Event_cohme(line, ChatSender)
 	/if (!${checkEventArgs[${ChatSender},${line},ZR]}) /return
 	/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
 	/call definecohspell
-	
-			 /if (${Me.Combat})  { 
+
+			 /if (${Me.Combat})  {
 				/tell ${ChatSender} I'm in Combat please try again in a few !
 				/return
-			} else /if (!${Me.Combat})  { 
+			} else /if (!${Me.Combat})  {
 				/if (!${SpawnCount[pc ${ChatSender}]})  {
 					/tell ${ChatSender} Your not in my Zone.
 					/Return
 				} else  {
 					/tell ${ChatSender} Call of Hero is Incoming...Please Standby.
-					/call e3_cast ${Spawn[pc =${ChatSender}].ID} "cohspellArray2D" 1		
+					/call e3_cast ${Spawn[pc =${ChatSender}].ID} "cohspellArray2D" 1
 				}
-			}	
-		
+			}
+
 /return
-		
 
 
-		
-|-- CoH All Event -- |		
-		
+
+
+|-- CoH All Event -- |
+
 
 sub Event_cohall(line, ChatSender)
 	/if (!${checkEventArgs[${ChatSender},${line},ZR]}) /return
@@ -668,24 +668,24 @@ sub Event_cohall(line, ChatSender)
 	/call definecohspell
 
 			/if (${Me.Combat}) {
-				/tell ${ChatSender} I'm in Combat please try again in a few !	
+				/tell ${ChatSender} I'm in Combat please try again in a few !
 				/return
-			
-			} else /if (!${Me.Combat}) { 
-			
+
+			} else /if (!${Me.Combat}) {
+
 				/declare i int local
-			
+
 				/for i 1 to ${NetBots.Counts}
-				
-					/if (!${SpawnCount[pc ${NetBots.Client[${i}]}]}) { 
+
+					/if (!${SpawnCount[pc ${NetBots.Client[${i}]}]}) {
 						/docommand ${ChatToggle} (${NetBots.Client[${i}]}) is not in zone!
-						
-						
+
+
 					} else /if (${NetBots[${NetBots.Client[${i}]}].Zone} && ${Spawn[pc ${NetBots.Client[${i}]}].Distance} < 30)  {
 						/docommand ${ChatToggle} (${NetBots.Client[${i}]}) is already here!
-				
+
 					} else /if (${NetBots[${NetBots.Client[${i}]}].Zone} && ${Spawn[pc ${NetBots.Client[${i}]}].Distance} > 30)  {
-						
+
 							/docommand ${ChatToggle} Call of Hero is Incoming on (${NetBots.Client[${i}]})!
 							:cohspellready
 							/call check_Ready "cohspellArray2D" 1
@@ -698,21 +698,21 @@ sub Event_cohall(line, ChatSender)
 								|/delay 2s
 								/goto :cohspellready
 							}
-						
-						}	
+
+						}
 
 					}
-				
+
 				/next i
-				
+
 			}
 			/docommand ${ChatToggle} I'm done CoHing all Netbots in Zone!
 		}
-	
+
 /return
-		
-		
-		
+
+
+
 | -------------------------------------------------------------------------------------------------------|
 | -- Attendance: Bot Roll Call        use: /attendance      Written by Smaht        Edited by: Muergan  -|
 | -------------------------------------------------------------------------------------------------------|
@@ -821,7 +821,7 @@ Sub Event_NewTHFChar
 /echo New Character Setup is Starting ***Please do NOT Interfere with the Process*** !!!
 /popup New Character Setup is Starting ***Please do NOT Interfere with the Process*** !!!
 
-/if (${Select[${Me.Class.ShortName},ROG]}) {  
+/if (${Select[${Me.Class.ShortName},ROG]}) {
 	/if (${Me.Sneaking}) /doability sneak
 	/if (${Me.Invis})  /makemevisible
 }
@@ -908,7 +908,7 @@ Sub QueenAdrianne
 /if (${Cursor.ID})  {
 	/autoinventory
 }
-	
+
 /Return
 
 
@@ -920,7 +920,7 @@ Sub Curious
 /delay 1s
 /hail
 /delay 1s
-	
+
 /Return
 
 Sub Azakir
@@ -931,7 +931,7 @@ Sub Azakir
 /delay 1s
 /hail
 /delay 1s
-	
+
 /Return
 
 
@@ -943,7 +943,7 @@ Sub Darton
 /delay 1s
 /hail
 /delay 1s
-	
+
 /Return
 
 
@@ -961,7 +961,7 @@ Sub Organ
 	/say meditate
 	/delay 1s
 }
-	
+
 /Return
 
 
@@ -975,7 +975,7 @@ Sub Chump
 /delay 1s
 /say bind my soul
 /delay 1s
-	
+
 /Return
 
 
@@ -995,7 +995,7 @@ Sub Tremmo
 	/say bard
 	/delay 1s
 }
-	
+
 /Return
 
 
@@ -1009,7 +1009,7 @@ Sub Wimbledink
 /delay 1s
 /say learn
 /delay 1s
-	
+
 /Return
 
 
@@ -1021,7 +1021,7 @@ Sub Moosher
 /delay 1s
 /hail
 /delay 1s
-	
+
 /Return
 
 
@@ -1122,7 +1122,7 @@ Sub ArmorMerch
 	/delay 1s
 	/hail
 	/delay 1s
-	
+
 	/if (${Select[${Me.Class.ShortName},MAG]})  {
 		/target npc id ${Spawn[NPC =Ammo].ID}
 		/varset ArmorMerch ${Spawn[NPC =Ammo].ID}
@@ -1149,7 +1149,7 @@ Sub ArmorMerch
 /Return
 
 
-	
+
 Sub Twinken
 
 /moveto id ${Spawn[NPC =Twinken].ID}
@@ -1158,10 +1158,10 @@ Sub Twinken
 /delay 1s
 /hail
 /delay 1s
-	
-/Return	
-	
-	
+
+/Return
+
+
 Sub Sune
 
 /moveto id ${Spawn[NPC =Sune The High Priest].ID}
@@ -1172,11 +1172,11 @@ Sub Sune
 /delay 1s
 /say buff
 /delay 1s
-	
-/Return	
-	
-	
-	
+
+/Return
+
+
+
 Sub Trix
 
 /moveto id ${Spawn[NPC =Trix].ID}
@@ -1185,10 +1185,10 @@ Sub Trix
 /delay 1s
 /hail
 /delay 1s
-	
-/Return		
-	
-	
+
+/Return
+
+
 Sub Gorgoza
 
 /moveto id ${Spawn[NPC =Gorgoza the Headhunter].ID}
@@ -1203,10 +1203,10 @@ Sub Gorgoza
 /delay 1s
 /say ready
 /delay 1s
-	
-/Return		
-	
-	
+
+/Return
+
+
 Sub AutoBuyArmor
 
 /declare itemToBuy string local
@@ -1247,11 +1247,11 @@ Sub AutoBuyArmor
 				/delay 5
 				| Finds out how many you have bought and compares to numToBuy
 					/if (${Math.Calc[${FindItemCount[=${itemToBuy}]}-${oldItemCount}]} < ${numToBuy}) /goto :buying
-			}		
+			}
 
 		}
 	/varcalc i ${i}+1
-	/goto :lookForItems	
+	/goto :lookForItems
 	}
 	/docommand ${ChatToggle} Done buying items.
 }
@@ -1281,8 +1281,8 @@ Sub AutoBuyArmor
 
 
 #event RallosZek "<#*#> ralloszek toggle"
-		
-		
+
+
 sub Event_RallosZek
 
 /if (${Select[${Me.Class.ShortName},CLR,DRU,SHM,WIZ,NEC,ENC,MAG]} && ${FindItem[=Blue Rod of Zek (Tier 3)].ID} && ${RallosZek} == 0)  {
@@ -1291,8 +1291,8 @@ sub Event_RallosZek
 } else /if (${Select[${Me.Class.ShortName},CLR,DRU,SHM,WIZ,NEC,ENC,MAG]} && ${FindItem[=Blue Rod of Zek (Tier 3)].ID} && ${RallosZek} == 1)  {
 	/varset RallosZek 0
 	/docommand ${ChatToggle} Rallos Zek Bane mode DISABLED!!
-}	
-/RETURN	
+}
+/RETURN
 
 
 |-----------------Macro Shared Events-------By Bazillions & Muergan--------|
@@ -1306,8 +1306,8 @@ Sub IsTank
 	/varset IsTank FALSE
 }
 /return
-		
-		
+
+
 
 Sub WaitUntilNotMoving
 	:WaitUntilNotMovingLoop
@@ -1364,7 +1364,7 @@ Sub EnjiWait
 		/goto :EnjiWaitLoop
 	}
 /return
-	
+
 
 |---------------Reaper of Mortality-----------------------Original by Bazillions--Editited for E3 by Muergan------|
 |																												  |
@@ -1391,7 +1391,7 @@ Sub Event_ReaperOfMortalityDuck(string line)
 	/if (${IsTank})  {
 		/delay 6s
 		/call KillReaper
-	} else /if (!${IsTank})  {	
+	} else /if (!${IsTank})  {
 		/if (${MainAssist.Equal[${Me.CleanName}]})  {
 			/delay 6s
 			/call KillReaper
@@ -1407,7 +1407,7 @@ Sub Event_ReaperOfMortalityMove(string line)
 	/popup Run away!!!
 	/if (${IsTank})  {
 		/rsay Move away from reaper !
-		} 
+		}
 	/if (${Assisting} && ${Spawn[NPC =The Reaper of Mortality].Distance} < 26)  {
 		/squelch /stick hold moveback 65
 		/call WaitUntilNotMoving
@@ -1416,7 +1416,7 @@ Sub Event_ReaperOfMortalityMove(string line)
 	} else /if (${Assisting} && ${Spawn[NPC =The Reaper of Mortality].Distance} > 25)  {
 		/call MoveToReaper
 	}
-	
+
 /return
 
 
@@ -1435,7 +1435,7 @@ Sub MoveToReaper
 	:KillReaper
 	/if (${IsTank})  {
 		/call KillReaper
-	} else /if (!${IsTank})  {	
+	} else /if (!${IsTank})  {
 		/if (${MainAssist.Equal[${Me.CleanName}]})  {
 			/call KillReaper
 		}
@@ -1449,9 +1449,9 @@ Sub KillReaper
 /bc Assist ${TankName} on ${Spawn[NPC =The Reaper of Mortality].ID}
 
 /return
-		
-|----------------------------------Halls of Honor----------------------------------------|	
-	
+
+|----------------------------------Halls of Honor----------------------------------------|
+
 |----------------------------Draekon HoH---------------Originals by Bazillions & Rafe--Editited for E3 by Muergan------|
 
 #Event DraekonMoveToNpc "You hear the voice of #1# calling to you, 'Come to me young one, we must combine our might to destroy him!'"
@@ -1515,7 +1515,7 @@ Sub Event_DraekonVoiceEnd(string Line, string targetName)
 
 /return
 
-	
+
 Sub Event_MoveToDraekon
 
 	/call IsTank
@@ -1535,7 +1535,7 @@ Sub Event_MoveToDraekon
 	/if (${IsTank})  {
 		/rsay Kill Draekon !!!
 		/call KillDraekon
-	} else /if (!${IsTank})  {	
+	} else /if (!${IsTank})  {
 		/if (${MainAssist.Equal[${Me.CleanName}]})  {
 			/rsay Kill Draekon !!!
 			/call KillDraekon
@@ -1550,34 +1550,34 @@ Sub KillDraekon
 /return
 
 
-	
-	
-	
+
+
+
 |------------------Seravince---------------Originals by Bazillions--Editited for E3 by Muergan------|
 |																									|
 |  ***Start all Characters middle of stairs facing away from him***									|
-|---------------------------------------------------------------------------------------------------|	
-	
-	
+|---------------------------------------------------------------------------------------------------|
+
+
 #Event SeravinceAoeStun "Emperor Seravince body goes rigid as he begins to look around at his attackers!"
 #Event SeravinceCreatesAdds "Seravince calls forth his advisors as he shouts, 'You will never be able to control or strike fear into the hearts of those whom follow their true Emperor!'"
 #Event SeravinceCallsAddsToAttack "The world begins to spin rapidly as Seravince calls forth his guardians!"
-	
-	
-	
+
+
+
 Sub Event_SeravinceAoeStun(string line)
 	/call IsTank
 	/popup AoE Stun
 	/if (${Select[${Me.Class.ShortName},MAG,DRU,WIZ,SHM,NEC,ENC,CLR,DRU,SHM]})  {
 		/return
 	} else /if (${IsTank})  {
-		/rsay Turn Away !!!	
+		/rsay Turn Away !!!
 	}
 	/stick off
 	/varset AllowControl FALSE
-	/face away 
+	/face away
 	/delay 5s
-	/face fast 
+	/face fast
 	/if (${IsTank})  {
 		/rsay Safe to Attack !!!
 		/call KillSeravince
@@ -1612,9 +1612,9 @@ Sub Event_SeravinceCallsAddsToAttack(string line)
 		/rsay Seravince Adds Attacking!!!
 		/return
 		}
-	/return	
-		
-Sub SeravinceMez	
+	/return
+
+Sub SeravinceMez
 	/if (${Me.Class.ShortName.Equal[ENC]}) {
 		:EnchanterSeravinceLoop
 		/target Advisor Tel`Quka
@@ -1687,15 +1687,15 @@ Sub Event_CreepDoomCureMe(string line, ChatSender)
 }
 
 
-/Return	
-	
-	
-	
+/Return
+
+
+
 Sub Event_ZenurixRunAway(string line, string PlayerName, string RestOfLine)
 
 /call IsTank
 /declare RunAwayName string local ${PlayerName.Right[-2].Left[-1]}
-	
+
 /if (${IsTank})  /return
 
 /if (${Me.Name.Equal[${RunAwayName}]}) {
@@ -1710,15 +1710,15 @@ Sub Event_ZenurixRunAway(string line, string PlayerName, string RestOfLine)
 	/call WaitUntilNotMoving
 	/call check_AutoAssist
 }
-	
-/Return	
+
+/Return
 
 
 Sub Event_ZenurixSafe
 
 /varset ZenurixWait 0
-	
-	
+
+
 /return
 
 
@@ -1733,7 +1733,7 @@ Sub defineCreepDoomCure
     /varset CreepDoomCureitem Shissar Empire Badge of Honor (Tier 1)
   } else /if (${Me.Book[Remove Greater Curse]}) {
     /varset CreepDoomCureitem Remove Greater Curse
-  } 
+  }
   /if (${Bool[${CreepDoomCureitem}]}) {
     /if (${Defined[CreepDoomCureArray]}) /deletevar CreepDoomCureArray
     /declare CreepDoomCureArray[1] string outer ${CreepDoomCureitem}
@@ -1745,7 +1745,7 @@ Sub defineCreepDoomCure
       }
   } else {
 	/if (${Me.Buff[Creeping Doom].ID}) {
-		/bc CureMe >> Creeping Doom << 
+		/bc CureMe >> Creeping Doom <<
 	}
   }
 /RETURN
@@ -1775,13 +1775,13 @@ Sub Event_EnjiKick
 Sub Event_EnjiKickReturn
 
 /varset EnjiWait 0
-		
+
 /return
-	
-	
+
+
 |--------------------------Vistrinda-------By Muergan--------------------|
 
-#Event VistrindaEggs "Out of the corner of your eye you see Vistrinda's Eggs begin to wobble as a strange voice enters your mind, 'Free me mortal! Only your words can break this shelled prison!'"	
+#Event VistrindaEggs "Out of the corner of your eye you see Vistrinda's Eggs begin to wobble as a strange voice enters your mind, 'Free me mortal! Only your words can break this shelled prison!'"
 #Event VistrindaAddADead "a corrupted caretaker has been slain by #*#!"
 #Event VistrindaAddADead "You have slain a corrupted caretaker!"
 #Event VistrindaAddA "A corrupted caretaker hits YOU for #*# points of damage."
@@ -1804,7 +1804,7 @@ Sub EggCheck
 	:goto Egg
 } else /if (${Spawn[NPC =Faithful Dragorn].ID})  {
 	:goto Egg
-   } 
+   }
 /return
 
 
@@ -1869,14 +1869,14 @@ Sub	Event_VistrindaAddAKill
 	/rsay Kill a corrupted caretaker!!!
 	/call KillVistrindaAddA
 }
-/if (!${IsTank})  {	
+/if (!${IsTank})  {
 	/if (${MainAssist.Equal[${Me.CleanName}]})  {
 		/rsay Kill a corrupted caretaker!!!
 		/call KillVistrindaAddA
 	}
 }
 /return
-	
+
 Sub	Event_VistrindaAddADead
 
 /if (${SpawnCount[npc "a corrupted caretaker"]} == 0) {
@@ -1884,7 +1884,7 @@ Sub	Event_VistrindaAddADead
 	}
 /call IsTank
 /if (${IsTank})  {
-		/if (${IsTank})  {	
+		/if (${IsTank})  {
 			/call KillVistrinda
 		}
 	/return
@@ -1901,7 +1901,7 @@ Sub	Event_VistrindaAddB
 /if (${VistrindaAddBTimer} == 0)  {
 	/if (${SpawnCount[npc "A Corrupted Dragorn"]})  {
 		/varset VistrindaAddBTimer 1
-		/bc KillAddB		
+		/bc KillAddB
 	}
 }
 
@@ -1915,7 +1915,7 @@ Sub	Event_VistrindaAddBKill
 	/rsay Kill A Corrupted Dragorn!!!
 	/call KillVistrindaAddB
 }
-/if (!${IsTank})  {	
+/if (!${IsTank})  {
 	/if (${MainAssist.Equal[${Me.CleanName}]})  {
 		/rsay Kill A Corrupted Dragorn!!!
 		/call KillVistrindaAddB
@@ -1924,7 +1924,7 @@ Sub	Event_VistrindaAddBKill
 /return
 
 
-	
+
 Sub	Event_VistrindaAddBDead
 
 /if (${SpawnCount[npc "A Corrupted Dragorn"]} == 0) {
@@ -1932,7 +1932,7 @@ Sub	Event_VistrindaAddBDead
 	}
 /call IsTank
 /if (${IsTank})  {
-		/if (${IsTank})  {	
+		/if (${IsTank})  {
 			/call KillVistrinda
 		}
 	/return
@@ -1945,7 +1945,7 @@ Sub	Event_VistrindaAddBDead
 /return
 
 
-	
+
 Sub KillVistrinda
 /delay 10
 /bc Assist ${TankName} on ${Spawn[NPC =Vistrinda, The Brood Mother].ID}
@@ -1969,8 +1969,8 @@ Sub KillVistrindaAddB
 |      Park all in sight of Valik, hide only clerics behind wall & engage     |
 |-----------------------------------------------------------------------------|
 
-#Event ValikBegin "You feel a sense of coming doom and horror as Valik begins to chant a powerful spell!"	
-#Event ValikEnd "Valik releases his spell causing those within his sight to be flung down the spire in a state of Vertigo!"	
+#Event ValikBegin "You feel a sense of coming doom and horror as Valik begins to chant a powerful spell!"
+#Event ValikEnd "Valik releases his spell causing those within his sight to be flung down the spire in a state of Vertigo!"
 
 Sub	Event_ValikBegin
 /popup RUN AWAY !!!!
@@ -1982,7 +1982,7 @@ Sub	Event_ValikBegin
 	}
 	/return
 	}
-/if (!${IsTank})  {	
+/if (!${IsTank})  {
 	/stick off
 	/attack off
 	/moveto loc 5.71 -60.22
@@ -1996,7 +1996,7 @@ Sub	Event_ValikBegin
 
 Sub KillValik
 /delay 20
-/bc Assist ${TankName} on ${Spawn[NPC =Valik the First Creation].ID}	
+/bc Assist ${TankName} on ${Spawn[NPC =Valik the First Creation].ID}
 /return
 
 
@@ -2005,7 +2005,7 @@ Sub	Event_ValikEnd
 /varset ValikWait 0
 /call IsTank
 /if (${IsTank} || ${Select[${Me.Class.ShortName},CLR]})  {
-		/if (${IsTank})  {			
+		/if (${IsTank})  {
 			/delay 20
 			/goto :KillValik
 		}
@@ -2014,9 +2014,9 @@ Sub	Event_ValikEnd
 /moveto loc 5.71 -60.22
 /call WaitUntilNotMoving
 :KillValik
-/if (${IsTank})  {	
+/if (${IsTank})  {
 			/rsay Return to the fight!!!
-			/call KillValik		
+			/call KillValik
 } else /if (!${IsTank})  {
 	/if (${MainAssist.Equal[${Me.CleanName}]})  {
 		/rsay Return to the fight!!!
@@ -2035,7 +2035,7 @@ Sub	Event_ValikEnd
 Sub	Event_MaestroGoto
 /popup Run To Maestro !!!!
 /if (${Select[${Me.Class.ShortName},WIZ,ENC,MAG,NEC,DRU,CLR,SHM]})  {
-	/call AssistOff	
+	/call AssistOff
 } else /if (${Select[${Me.Class.ShortName},MNK,BER,ROG,RNG,BST,BRD]})  {
 	/call AssistOff
 	/moveto loc -1.10 -2.68
@@ -2054,7 +2054,7 @@ Sub	Event_MaestroGoAdds
 /popup Run To Hallway !!!!
 /beep
 /if (${Select[${Me.Class.ShortName},WIZ,ENC,MAG,NEC,DRU,CLR,SHM]})  {
-	/call AssistOff	
+	/call AssistOff
 } else /if (${Select[${Me.Class.ShortName},MNK,BER,ROG,RNG,BST,BRD]})  {
 	/call AssistOff
 	/moveto loc -108.45 2.44
@@ -2071,7 +2071,7 @@ Sub KillMaestro
 
 /delay 5s
 /bc Assist ${MainAssist} on ${Spawn[NPC =Maestro Tan`Lor].ID}
-	
+
 /return
 
 
@@ -2106,7 +2106,7 @@ Sub Feedhim
 Sub KillMoarburgerz
 
 /target ${SpawnCount[npc "Moarburgerz"]}.ID}
-/bc Assist ${TankName} on ${Spawn[NPC =Moarburgerz].ID}	
+/bc Assist ${TankName} on ${Spawn[NPC =Moarburgerz].ID}
 /return
 
 
@@ -2114,9 +2114,9 @@ Sub Event_MoarburgerzFull
 
 /popup Kill Him!!!
 /call IsTank
-/if (${IsTank})  {	
+/if (${IsTank})  {
 			/rsay Return to the fight!!!
-			/call KillMoarburgerz		
+			/call KillMoarburgerz
 	}
 }
 /return
@@ -2261,7 +2261,7 @@ Sub Event_XeruForm
 #Event VampStake "Reborn Vampire staggers and collapses."
 #Event VampStake "Enthralled Vampire staggers and collapses."
 
-SUB Event_VampStake(string line) 
+SUB Event_VampStake(string line)
 
 /popup Vampire Down....Stake It !!!!
 /if (${FindItem[Vampire Bane Earring (Tier 7)].ID} && ${Select[${Me.Class.ShortName},PAL,SHD,WAR,MNK,BER,BRD,ROG,RNG,BST]}) {
@@ -2284,7 +2284,7 @@ Sub Apply_Antithesis
 		/if (${c_Ready})  {
 			/call e3_cast ${AntithesisTarget} "AntithesisArray2D" 1
 		}
-} 
+}
 
 /Return
 
@@ -2297,7 +2297,7 @@ Sub Check_AntithesisItem
  /declare i int local
 
 /if (${FindItem[=Stone of Absolute Antithesis].ID}) {
-    /varset AntithesisItem Stone of Absolute Antithesis 
+    /varset AntithesisItem Stone of Absolute Antithesis
 } else /if (${Spawn[${AntithesisTarget}].Race.Name.Equal[Dragorn]})  {
 	/if (${FindItem[=Imbued Dragorn Bone].ID}) {
 		/varset AntithesisItem Imbued Dragorn Bone
@@ -2326,7 +2326,7 @@ Sub Check_AntithesisItem
 	/if (${FindItem[=Murkglider Soulrod].ID}) {
 		/varset AntithesisItem Murkglider Soulrod
 	}
-} 
+}
 
 /if (${Bool[${AntithesisItem}]}) {
     /if (${Defined[AntithesisArray]}) /deletevar AntithesisArray
@@ -2337,7 +2337,7 @@ Sub Check_AntithesisItem
         /varset AntithesisArray2D[${i},${iCastInvis}] 1
       /next i
       }
-  } 
+  }
 
 /Return
 
@@ -2376,9 +2376,11 @@ Sub defineSolerisDispell
 /declare i int local
 /if (${FindItem[Christine's Engagement Ring (Tier 9)].ID}) {
 	/varset SolerisDispell Christine's Engagement Ring (Tier 9)
+} else /if (${Me.Book[Blast of Annulment]}) {
+    /varset SolerisDispell Blast of Annulment	
 } else /if (${Me.Book[Flames of Annulment]}) {
     /varset SolerisDispell Flames of Annulment
-} 
+}
 /if (${Bool[${SolerisDispell}]}) {
 	/if (${Defined[SolerisDispellArray]}) /deletevar SolerisDispellArray
     /declare SolerisDispellArray[1] string outer ${SolerisDispell}
@@ -2490,9 +2492,9 @@ Sub Event_HoHCruthz(string line)
 
 
 |--------------------------Spawn Alerts Section End------------------------|
-	
-	
-|---------Test Event------For Development Only-------|	
+
+
+|---------Test Event------For Development Only-------|
 #Event TestCode	"<#1#> TestCode"
 
 Sub Event_TestCode
@@ -2500,21 +2502,21 @@ Sub Event_TestCode
 
 
 
-/Return	
+/Return
 
 
 |----------End Test Event-------------------------------|
 
 Sub Thf_Setup
 /if (${Debug}) /echo |- Thf_Setup ==>
-	
+
 /declare DraekonCall int outer 0
 /declare DraekonGrass int outer 0
 /declare SeravinceStun int outer 0
 /declare VistrindaAddATimer int outer 0
 /declare VistrindaAddBTimer int outer 0
 /declare IsTank bool outer FALSE
-/declare ValikWait int outer 0	
+/declare ValikWait int outer 0
 /declare TankName string outer NULL
 /declare NoShrinkItem bool outer TRUE
 /declare LargeGatheritemCapable bool outer TRUE
@@ -2530,7 +2532,7 @@ Sub Thf_Setup
 	/if (${Ini[${Character_Ini},Mana Recovery,Gather Mana (On/Off)].Length})  /call IniToVarV "${Character_Ini},Mana Recovery,Gather Mana (On/Off)" GatherManaCheck bool outer
 	/if (${Ini[${Character_Ini},Mana Recovery,Small Gather Mana (Pct)].Length})  /call IniToVarV "${Character_Ini},Mana Recovery,Small Gather Mana (Pct)" SmallGatherPCT int outer
 	/if (${Ini[${Character_Ini},Mana Recovery,Large Gather Mana (Pct)].Length})  /call IniToVarV "${Character_Ini},Mana Recovery,Large Gather Mana (Pct)" LargeGatherPCT int outer
-} 
+}
 
 /if (${Select[${Me.Class.ShortName},WIZ,NEC,ENC,MAG]})  {
 	/if (${Ini[${Character_Ini},Mana Recovery,Conversion(HP>Mana) (On/Off)].Length})  /call iniToVarV "${Character_Ini},Mana Recovery,Conversion(HP>Mana) (On/Off)" AutoConversion bool outer
@@ -2548,7 +2550,7 @@ Sub Thf_Setup
 /if (${Ini[${Character_Ini},Misc,Self Shrink (On/Off)].Length})  /call IniToVarV "${Character_Ini},Misc,Self Shrink (On/Off)" SelfShrink bool outer
 /if (${Ini[${Character_Ini},Misc,Custom Commands (On/Off)].Length})  /call IniToVarV "${Character_Ini},Misc,Custom Commands (On/Off)" CustomCommands bool outer
 /if (${Ini[${Character_Ini},Solteris,Dispell (On/Off)].Length})  /call IniToVarV "${Character_Ini},Solteris,Dispell (On/Off)" SolterisDispellToon bool outer
-	
+
 /if (${Debug}) /echo <== Thf_Setup -|
 /return
 
@@ -2600,9 +2602,9 @@ Sub Thf_Background_Events
 /doevents MaestroGoAdds
 /doevents NewTHFChar
 /doevents TestCode
-/doevents ContractedDoom 
-/doevents ZenurixRunAway 
-/doevents ZenurixSafe 
+/doevents ContractedDoom
+/doevents ZenurixRunAway
+/doevents ZenurixSafe
 /doevents CreepDoomCureMe
 /doevents AutoForage
 /doevents CheckEmptyAugType
@@ -2633,8 +2635,8 @@ Sub Thf_Background_Events
 
 |---Solteris Checks---|
 
-/if (${Assisting} && ${Zone.ShortName.Equal[solteris]} && ${SolterisDispellToon})  {  
-	/if (${Target.Buff[Woven Fire].ID} || ${Target.Buff[Fiery Potential].ID} || ${Target.Buff[Infusion of the Inferno].ID})  { 
+/if (${Assisting} && ${Zone.ShortName.Equal[solteris]} && ${SolterisDispellToon})  {
+	/if (${Target.Buff[Woven Fire].ID} || ${Target.Buff[Fiery Potential].ID} || ${Target.Buff[Infusion of the Inferno].ID})  {
 		/call SolterisDS_Dispell
 	}
 }
@@ -2650,11 +2652,11 @@ Sub Thf_Background_Events
 		/pet attack ${AssistTarget}
 	}
 }
-	
+
 /if (${Me.Pet.ID} && ${Zone.ShortName.Equal[solteris]} && ${Target.Buff[Woven Fire].ID}  && ${Assisting})  /squelch /pet back off
 
 
-/Return 
+/Return
 
 Sub thf_Aliases
 /if (${Debug} || ${Debug_Thf}) /echo |- thf_Aliases ==>
@@ -2674,7 +2676,7 @@ Sub thf_Aliases
 	/squelch /alias /augslot /bc Find Empty Aug In Slot
 	/squelch /alias /suneit /bc [+g+]SuneBuffs on ${Target.CleanName}
 	/squelch /alias /sunebuff /bc CastSuneBuffs
-	
+
 
 
 /if (${Debug} || ${Debug_Thf}) /echo <== thf_Aliases -|
@@ -2710,5 +2712,3 @@ SUB Thf_CharacterSettings
 
 /if (${Debug}) /echo <== THF_CharacterSettings -|
 /RETURN
-
-
