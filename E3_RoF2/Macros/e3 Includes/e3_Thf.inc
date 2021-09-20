@@ -275,8 +275,8 @@ Sub DoForage
 SUB EVENT_thfgate 
 
 /if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
-/if (${FindItem[Charm of Queen].ID})  {
-	/casting "${FindItem[Charm of Queen].ID}" -maxtries|2
+/if (${FindItem[Charm of Queen Adrianne].ID})  {
+	/casting "${FindItem[Charm of Queen Adrianne].Name}" -maxtries|2
 } else {
     /call definethfgate
     :checkReady
