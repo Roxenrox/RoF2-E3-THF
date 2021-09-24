@@ -273,7 +273,11 @@ Sub DoForage
 #event thfgate "#1# tells the group, 'thfgate'"
 #event thfgate "#1# tells you, 'thfgate'"
 SUB EVENT_thfgate
-	/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
+
+/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
+/if (${FindItem[Charm of Queen Adrianne].ID})  {
+	/casting "${FindItem[Charm of Queen Adrianne].Name}" -maxtries|2
+} else {
     /call definethfgate
     :checkReady
     /call check_Ready "thfgateArray2D" 1
@@ -283,38 +287,24 @@ SUB EVENT_thfgate
         /goto :checkReady
       }
      /call e3_cast ${Me.ID} "thfgateArray2D" 1
-
+}
 /return
 
 
 
-
-
 Sub definethfgate
-  /declare thfgateitem string local
-  /declare i int local
-  /if (${FindItem[Elite Charm of Queen Adrianne (Tier 7)].ID}) {
-    /varset thfgateitem Elite Charm of Queen Adrianne (Tier 7)
-  } else /if (${FindItem[=Exquisite Charm of Queen Adrianne (Tier 6)].ID}) {
-    /varset thfgateitem Exquisite Charm of Queen Adrianne (Tier 6)
-  } else /if (${FindItem[=Exceptional Charm of Queen Adrianne (Tier 5)].ID}) {
-    /varset thfgateitem Exceptional Charm of Queen Adrianne (Tier 5)
-  } else /if (${FindItem[=Superior Magical Charm of Queen Adrianne (Tier 4)].ID}) {
-    /varset thfgateitem Superior Magical Charm of Queen Adrianne (Tier 4)
-  } else /if (${FindItem[=Advanced Magical Charm of Queen Adrianne (Tier 2)].ID}) {
-    /varset thfgateitem Advanced Magical Charm of Queen Adrianne (Tier 2)
-  } else /if (${FindItem[=Magical Charm of Queen Adrianne (Tier 1)].ID}) {
-    /varset thfgateitem Magical Charm of Queen Adrianne (Tier 1)
-  } else /if (${FindItem[=Advanced Charm of Queen Adrianne (Tier 1)].ID}) {
-    /varset thfgateitem Advanced Charm of Queen Adrianne (Tier 1)
-  } else /if (${FindItem[=Charm of Queen Adrianne].ID}) {
-    /varset thfgateitem Charm of Queen Adrianne
-  } else /if (${Me.Book[Circle of the Forest]}) {
+
+/declare thfgateitem string local
+/declare i int local
+
+/if (${Me.Book[Circle of the Forest]}) {
     /varset thfgateitem Circle of the Forest
-  } else /if (${Me.Book[Forest Portal]}) {
+} else /if (${Me.Book[Forest Portal]}) {
     /varset thfgateitem Forest Portal
-  }
-  /if (${Bool[${thfgateitem}]}) {
+}
+
+
+/if (${Bool[${thfgateitem}]}) {
     /if (${Defined[thfgateArray]}) /deletevar thfgateArray
     /declare thfgateArray[1] string outer ${thfgateitem}
     /if (${thfgateArray.Size}) {
@@ -323,9 +313,9 @@ Sub definethfgate
         /varset thfgateArray2D[${i},${iCastInvis}] 1
       /next i
       }
-  } else {
-    /bc I do not have a Hidden Forest Gate Charm available
-  }
+} else {
+    /bc I do not have a Hidden Forest Gate available !!
+}
 /RETURN
 
 |---------------Hidden Vale Gate---------By Muergan----|
@@ -335,43 +325,49 @@ Sub definethfgate
 #event valegate "#1# tells the group, 'valegate'"
 #event valegate "#1# tells you, 'valegate'"
 SUB EVENT_valegate
-    /if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
+
+/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
+/if (${FindItem[=Token of the Vale].ID})  {
+	/casting "${FindItem[=Token of the Vale].ID}" -maxtries|2
+} else {
 	/call defineValegate
     :checkReady
     /call check_Ready "ValegateArray2D" 1
-      /if ((!${c_Ready} || !${check_Mana["ValegateArray2D",1]}) && ${Me.CombatState.NotEqual[COMBAT]}) {
+    /if ((!${c_Ready} || !${check_Mana["ValegateArray2D",1]}) && ${Me.CombatState.NotEqual[COMBAT]}) {
         /if (!${Me.Sitting}) /sit on
         /delay 1s
         /goto :checkReady
-      }
-     /call e3_cast ${Me.ID} "ValegateArray2D" 1
+    }
+    /call e3_cast ${Me.ID} "ValegateArray2D" 1
+}
 
 /return
 
 
 Sub defineValegate
 
-  /declare Valegateitem string local
-  /declare i int local
-  /if (${FindItem[=Token of the Vale].ID}) {
-    /varset Valegateitem Token of the Vale
-  } else /if (${Me.Book[Circle of the Vale]}) {
+/declare Valegateitem string local
+/declare i int local
+
+/if (${Me.Book[Circle of the Vale]}) {
     /varset Valegateitem Circle of the Vale
-  } else /if (${Me.Book[Vale Portal]}) {
+} else /if (${Me.Book[Vale Portal]}) {
     /varset Valegateitem Vale Portal
-  }
-  /if (${Bool[${Valegateitem}]}) {
+}
+
+/if (${Bool[${Valegateitem}]}) {
     /if (${Defined[ValegateArray]}) /deletevar ValegateArray
     /declare ValegateArray[1] string outer ${Valegateitem}
     /if (${ValegateArray.Size}) {
-      /call BuildSpellArray "ValegateArray" "ValegateArray2D"
-      /for i 1 to ${ValegateArray2D.Size[1]}
+		/call BuildSpellArray "ValegateArray" "ValegateArray2D"
+		/for i 1 to ${ValegateArray2D.Size[1]}
         /varset ValegateArray2D[${i},${iCastInvis}] 1
-      /next i
-      }
-  } else {
-    /bc I do not have a Hidden Vale Gate Charm available
-  }
+		/next i
+    }
+} else {
+    /bc I do not have a Hidden Vale Gate available !!
+}
+
 /RETURN
 
 
@@ -384,43 +380,13 @@ Sub defineValegate
 #event hohgate "#1# tells the group, 'hohgate'"
 #event hohgate "#1# tells you, 'hohgate'"
 SUB EVENT_hohgate
-    /if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
-	/call definehohgate
-    :checkReady
-    /call check_Ready "hohgateArray2D" 1
-      /if ((!${c_Ready} || !${check_Mana["hohgateArray2D",1]}) && ${Me.CombatState.NotEqual[COMBAT]}) {
-        /if (!${Me.Sitting}) /sit on
-        /delay 1s
-        /goto :checkReady
-      }
-     /call e3_cast ${Me.ID} "hohgateArray2D" 1
+
+/if (${Select[${Me.Class.ShortName},BRD]} && ${Twist.Twisting}) /twist stop
+/if (${FindItem[=Shimmering Portal Fragment (Tier 8)].ID})  {
+	/casting "${FindItem[=Shimmering Portal Fragment (Tier 8)].ID}" -maxtries|2
+}
 
 /return
-
-
-Sub definehohgate
-
-  /declare hohgateitem string local
-  /declare i int local
-  /if (${FindItem[=Shimmering Portal Fragment (Tier 8)].ID}) {
-    /varset hohgateitem Shimmering Portal Fragment (Tier 8)
-  }
-  /if (${Bool[${hohgateitem}]}) {
-    /if (${Defined[hohgateArray]}) /deletevar hohgateArray
-    /declare hohgateArray[1] string outer ${hohgateitem}
-    /if (${hohgateArray.Size}) {
-      /call BuildSpellArray "hohgateArray" "hohgateArray2D"
-      /for i 1 to ${hohgateArray2D.Size[1]}
-        /varset hohgateArray2D[${i},${iCastInvis}] 1
-      /next i
-      }
-  } else {
-    /bc I do not have a Halls of Honor Gate Item available
-  }
-/RETURN
-
-
-
 
 
 |-------------- Gather Mana Items -------By Muergan---|
@@ -2377,7 +2343,7 @@ Sub defineSolerisDispell
 /if (${FindItem[Christine's Engagement Ring (Tier 9)].ID}) {
 	/varset SolerisDispell Christine's Engagement Ring (Tier 9)
 } else /if (${Me.Book[Blast of Annulment]}) {
-    /varset SolerisDispell Blast of Annulment	
+    /varset SolerisDispell Blast of Annulment
 } else /if (${Me.Book[Flames of Annulment]}) {
     /varset SolerisDispell Flames of Annulment
 }
