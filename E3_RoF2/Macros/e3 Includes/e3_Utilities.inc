@@ -440,7 +440,7 @@ SUB BuildSpellArray(ArrayName, NewArrayName)
 				/varset	${NewArrayName}[${i},${iMyRange}] ${Me.AltAbility[${${NewArrayName}[${i},${iCastName}]}].Spell.MyRange}
 			}		
 		} else /if (${${NewArrayName}[${i},${iCastType}].Equal[Spell]}) {
-			/if (${Spell[${${NewArrayName}[${i},${iCastName}]}].AERange} > 0) {
+			/if (${Spell[${${NewArrayName}[${i},${iCastName}]}].AERange} > 0 && ${Spell[${${NewArrayName}[${i},${iCastName}]}].MyRange} == 0) {
 				/varset	${NewArrayName}[${i},${iMyRange}] ${Spell[${${NewArrayName}[${i},${iCastName}]}].AERange}
 			} else {
 				/varset	${NewArrayName}[${i},${iMyRange}] ${Spell[${${NewArrayName}[${i},${iCastName}]}].MyRange}
